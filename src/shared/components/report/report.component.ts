@@ -11,6 +11,7 @@ import { Product, Category, Brand } from '../../../models/model';
 export class ReportComponent implements OnInit {
     @Input() reportProps: any;
     chart: Chart | null = null;
+
     selectedCategory: string = 'fisico';
     selectedProduct: string = 'curso';
     selectedBrand: string = 'Adidas';

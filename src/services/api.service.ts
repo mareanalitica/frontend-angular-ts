@@ -2,16 +2,16 @@ import { Injectable } from '@angular/core';
 import axios from 'axios';
 import { Observable } from 'rxjs';
 import { Brand, Category, Product } from '../models/model';
+import { environment } from 'src/enviroments/enviroment';
 
 @Injectable({
     providedIn: 'root',
 })
 export class ApiService {
-    private baseUrl = 'http://localhost:5255';
+    private baseUrl = environment.apiUrl;
 
     constructor() { }
 
-    // Método para obter produtos por categoria
     getProducts(): Observable<Product[]> {
         return new Observable((observer) => {
             axios

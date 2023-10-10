@@ -8,7 +8,7 @@
 
         <label for="productSelect" class="select-label">Produto:</label>
         <select id="productSelect" class="custom-select" [(ngModel)]="selectedProduct" (change)="onProductSelected()">
-            <option *ngFor="let product of products" [value]="product.name">{{ product.name }}</option>
+            <option *ngFor="let product of uniqueProductNames" [value]="product">{{ product }}</option>
         </select>
 
         <label for="brandSelect" class="select-label">Marca:</label>
