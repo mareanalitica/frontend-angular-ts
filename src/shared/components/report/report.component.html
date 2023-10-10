@@ -1,24 +1,19 @@
 <div class="bar-chart-container">
     <div class="category-select-row">
         <label for="categorySelect" class="select-label">Categoria:</label>
-        <select id="categorySelect" class="custom-select">
-            <option value="category1">Categoria 1</option>
-            <option value="category2">Categoria 2</option>
-            <option value="category3">Categoria 3</option>
+        <select id="categorySelect" class="custom-select" [(ngModel)]="selectedCategory"
+            (change)="onCategorySelected()">
+            <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
         </select>
 
         <label for="productSelect" class="select-label">Produto:</label>
-        <select id="productSelect" class="custom-select">
-            <option value="product1">Produto 1</option>
-            <option value="product2">Produto 2</option>
-            <option value="product3">Produto 3</option>
+        <select id="productSelect" class="custom-select" [(ngModel)]="selectedProduct" (change)="onProductSelected()">
+            <option *ngFor="let product of products" [value]="product.name">{{ product.name }}</option>
         </select>
 
         <label for="brandSelect" class="select-label">Marca:</label>
-        <select id="brandSelect" class="custom-select">
-            <option value="brand1">Marca 1</option>
-            <option value="brand2">Marca 2</option>
-            <option value="brand3">Marca 3</option>
+        <select id="brandSelect" class="custom-select" [(ngModel)]="selectedBrand" (change)="onBrandSelected()">
+            <option *ngFor="let brand of brands" [value]="brand">{{ brand }}</option>
         </select>
 
     </div>

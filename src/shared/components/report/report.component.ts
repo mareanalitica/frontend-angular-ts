@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Chart } from 'chart.js/auto';
+import { ApiService } from 'src/services/api.service';
+import { Product, Category, Brand } from '../../../models/model';
 
 @Component({
     selector: 'app-report',
@@ -8,12 +10,26 @@ import { Chart } from 'chart.js/auto';
 })
 export class ReportComponent implements OnInit {
     @Input() reportProps: any;
+    chart: Chart | null = null;
+    selectedCategory: string = 'fisico';
+    selectedProduct: string = 'curso';
+    selectedBrand: string = 'Adidas';
 
-    constructor() { }
-    updateChart(salesByMonth: number[]) {
+    categories: Category[] = [];
+    brands: Brand[] = [];
+    products: Product[] = [];
+    salesByMonth: number[] = [];
+    filteredSalesByMonth: number[] = [];
+    uniqueProductNames: string[] = [];
+
+    constructor(private apiService: ApiService) { }
+
+    updateChart() {
+        if (this.chart) {
+            this.chart.destroy();
+        }
         const ctx = document.getElementById('barChart') as HTMLCanvasElement;
-
-        new Chart(ctx, {
+        this.chart = new Chart(ctx, {
             type: 'line',
             data: {
                 labels: [
@@ -22,7 +38,7 @@ export class ReportComponent implements OnInit {
                 ],
                 datasets: [{
                     label: 'Vendas',
-                    data: salesByMonth,
+                    data: this.filteredSalesByMonth,
                     backgroundColor: 'rgba(75, 192, 192, 0.2)',
                     borderColor: 'rgba(75, 192, 192, 1)',
                     borderWidth: 1
@@ -37,16 +53,88 @@ export class ReportComponent implements OnInit {
             }
         });
     }
-    ngOnInit() {
-        const mockData = {
-            labels: [
-                'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
-                'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'
-            ],
-            salesByMonth: [10, 20, 15, 30, 25, 12, 8, 18, 22, 14, 28, 19],
-        };
 
-        this.updateChart(mockData.salesByMonth);
+
+    ngOnInit() {
+        this.apiService.getCategories().subscribe((data: Category[]) => {
+            this.categories = data;
+        });
+
+
+        this.apiService.getBrands().subscribe((data: Brand[]) => {
+            this.brands = data;
+        });
+
+
+        this.apiService.getProducts().subscribe((data: Product[]) => {
+            this.uniqueProductNames = Array.from(new Set(data.map(product => product.name)));
+            this.products = data;
+        });
+
+
+        this.salesByMonth = new Array(12).fill(0);
+        this.filteredSalesByMonth = [...this.salesByMonth];
+        this.updateChart();
+    }
+    ngOnDestroy() {
+        if (this.chart) {
+            this.chart.destroy();
+        }
     }
 
+    onCategorySelected() {
+        if (this.selectedCategory) {
+
+            const filteredProducts = this.products.filter((product) => product.category === this.selectedCategory);
+
+
+            this.filteredSalesByMonth = new Array(12).fill(0);
+            filteredProducts.forEach((product) => {
+                this.filteredSalesByMonth[product.month - 1] += product.total;
+            });
+
+
+            this.updateChart();
+        }
+    }
+
+    onProductSelected() {
+        if (this.selectedProduct) {
+
+            const filteredProducts = this.products.filter(
+                (product) =>
+                    product.category === this.selectedCategory &&
+                    product.name === this.selectedProduct
+            );
+
+
+            this.filteredSalesByMonth = new Array(12).fill(0);
+            console.log("[filteredProducts]", filteredProducts)
+            filteredProducts.forEach((product) => {
+                this.filteredSalesByMonth[product.month - 1] += product.total;
+            });
+
+
+            this.updateChart();
+        }
+    }
+
+    onBrandSelected() {
+        if (this.selectedBrand) {
+
+            const filteredProducts = this.products.filter(
+                (product) =>
+                    product.category === this.selectedCategory &&
+                    product.brand === this.selectedBrand
+            );
+
+
+            this.filteredSalesByMonth = new Array(12).fill(0);
+            filteredProducts.forEach((product) => {
+                this.filteredSalesByMonth[product.month - 1] += product.total;
+            });
+
+            this.updateChart();
+        }
+    }
 }
