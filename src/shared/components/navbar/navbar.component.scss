@@ -1,0 +1,73 @@
+.navbar {
+    background-color: #007bff;
+    /* Cor de fundo da barra de navegação */
+    color: #fff;
+    /* Cor do texto */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+
+    .navbar-logo {
+        font-size: 24px;
+    }
+
+    .navbar-links {
+        a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .navbar-toggle {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            margin: 3px 0;
+        }
+    }
+}
+
+/* Estilos para a barra de navegação responsiva */
+@media screen and (max-width: 768px) {
+    .navbar-links {
+        display: none;
+        flex-direction: column;
+        background-color: #007bff;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        padding: 10px;
+
+        a {
+            margin: 10px 0;
+        }
+    }
+
+    .navbar.active .navbar-links {
+        display: flex;
+    }
+
+    .navbar.active .navbar-toggle .bar:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+
+    .navbar.active .navbar-toggle .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .navbar.active .navbar-toggle .bar:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+}

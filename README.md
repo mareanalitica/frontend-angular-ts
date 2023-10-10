@@ -1,27 +1,58 @@
-# Frontend
+# Desafio Frontend 👩‍💻🚀
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.5.
+## Descrição do Desafio
 
-## Development server
+Este projeto consiste em um frontend desenvolvido com Angular, uma estrutura popular de desenvolvimento web em TypeScript. O desafio envolve a criação de um painel de visualização de dados de vendas por mês, com a capacidade de selecionar diferentes categorias, vendedores e estados para visualizar os dados.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Funcionalidades Principais
 
-## Code scaffolding
+- Visualização de dados de vendas por mês em um gráfico de barras.
+- Seleção de categorias, vendedores e estados para filtrar os dados exibidos no gráfico.
+- Atualização em tempo real do gráfico de barras conforme as seleções são alteradas.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Executando o Projeto
 
-## Build
+1. Certifique-se de que você tenha o Angular CLI instalado. Se não tiver, você pode instalá-lo globalmente com o seguinte comando:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+   ```bash
+   npm install -g @angular/cli
+   ```
 
-## Running unit tests
+2. Clone o repositório deste projeto.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+3. Navegue até a pasta raiz do projeto e instale as dependências com o seguinte comando:
 
-## Running end-to-end tests
+   ```bash
+   npm install
+   ```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+4. Inicie o servidor de desenvolvimento executando o seguinte comando:
 
-## Further help
+   ```bash
+   ng serve
+   ```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+   O aplicativo estará disponível em `http://localhost:4200/`. Ele será recarregado automaticamente sempre que você fizer alterações nos arquivos de origem.
+
+## Estrutura do Projeto
+
+O projeto Angular possui a seguinte estrutura de arquivos e pastas:
+
+- `src/app`: Contém os componentes, serviços e módulos do aplicativo.
+- `src/assets`: Armazena ativos como imagens, folhas de estilo e arquivos de dados.
+- `src/environments`: Configurações de ambiente para diferentes ambientes, como desenvolvimento e produção.
+
+## Comandos Úteis
+
+- `ng generate component component-name`: Gere um novo componente.
+- `ng build`: Compile o projeto para produção.
+
+## Ajuda Adicional
+
+Para obter mais ajuda sobre o Angular CLI, você pode executar o seguinte comando:
+
+```bash
+ng help
+```
+
+## Licença
