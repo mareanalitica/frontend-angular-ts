@@ -7,7 +7,7 @@ Este projeto consiste em um frontend desenvolvido com Angular, uma estrutura pop
 ## Funcionalidades Principais
 
 - Visualização de dados de vendas por mês em um gráfico de barras.
-- Seleção de categorias, vendedores e estados para filtrar os dados exibidos no gráfico.
+- Seleção de categorias, produtos e marcas para filtrar os dados exibidos no gráfico.
 - Atualização em tempo real do gráfico de barras conforme as seleções são alteradas.
 
 ## Executando o Projeto
