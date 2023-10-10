@@ -110,7 +110,6 @@ export class ReportComponent implements OnInit {
 
 
             this.filteredSalesByMonth = new Array(12).fill(0);
-            console.log("[filteredProducts]", filteredProducts)
             filteredProducts.forEach((product) => {
                 this.filteredSalesByMonth[product.month - 1] += product.total;
             });
